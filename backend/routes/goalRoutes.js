@@ -3,23 +3,21 @@ const express = require('express')
 const { builtinModules } = require('module')
 const router = express.Router()
 
-const { getGoals } = require('../controllers/goalController.js')
+const { getGoals, setGoal, updateGoal, deleteGoal } = require('../controllers/goalController.js')
 
-
+// NOTE: 
+// Since both of these routes use the same route of '/' we can merge them into one route.
+// EXAMPLE:
+// router.route('/').get(getGoals).post(setGoal)
 router.get('/', getGoals)
- 
+router.post('/', setGoal)
 
-router.post('/', (req, res) => {
-  res.status(200).json({message: 'Set Goal'})
-})
-
-router.put('/:id', (req, res) => {
-  res.status(200).json({message: `Update Goal ${req.params.id}`})
-})
-
-router.delete('/:id', (req, res) => {
-  res.status(200).json({message: `Delete Goal ${req.params.id}`})
-})
+// NOTE: 
+// Since both of these routes use the same route of '/:id' we can merge them into one route.
+// EXAMPLE:
+// router.route('/:id').delete(deleteGoal).put(updateGoal)
+router.put('/:id', updateGoal)
+router.delete('/:id', deleteGoal)
 
 module.exports = router
 
