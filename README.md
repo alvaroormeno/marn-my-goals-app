@@ -33,6 +33,18 @@ A clone of Spacex.com
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
+- [Node.js](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Nodemon](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Express](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [dotEnv](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Express Async Handler](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [MondgoDB](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Mongoose](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Colors](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+- [MondgoDB](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [MondgoDB](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 ## Screenshots
 
 ![Screenshot 1](img/screenshot1.png)
