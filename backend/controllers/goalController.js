@@ -1,45 +1,64 @@
+const asyncHandler = require('express-async-handler')
+
+
+
+
+// IMPORTANT NOTE -> When we use mongoose inside of these controller functions to interact with database, we get back a promise. Therefore we use async/await... we added async before (req, res). If we use async/await we need to use try/catch syntax. But if dont want to use try/cath and just use error handler we need to use express-async-handler package. We install it and import it to the top of this file and wrap the function with it.
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 // DESCRIPTION - Get all goals
 // ROUTE - GET /api/goals
 // ACCESS - Private
-const getGoals = (req, res) => {
+const getGoals = asyncHandler( async (req, res) => {
   res.status(200).json({message: 'Get Goals'})
-}
+})
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 // DESCRIPTION - Set a goal
 // ROUTE - POST /api/goals
 // ACCESS - Private
-const setGoal = (req, res) => {
+const setGoal = asyncHandler( async (req, res) => {
 
-  //read body data
-  console.log(req.body)
-
-  // check for body data first
+  // Check if there is no body data/text.
   if(!req.body.text) {
-    // If there is no body text, set response status to 400 which is error and as an extra add a json message.
+
+    // If no body data/text set response to error:
+    // Option 1: set response status to 400 which is an error and as an extra add a json message.
     // res.status(400).json({message: "please add a text field"})
-    
-    // Option 2 - If there is no body text, set response status to 400 which is error but use express error handler
+    // Option 2 - set response status to 400  but use express error handler afyer.
     res.status(400)
     throw new Error('Please add a text field')
   }
 
   res.status(200).json({message: 'Set Goal'})
-}
+})
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 // DESCRIPTION - Update goal
 // ROUTE - PUT /api/goals/:id
 // ACCESS - Private
-const updateGoal = (req, res) => {
+const updateGoal = asyncHandler( async (req, res) => {
   res.status(200).json({message: `Update Goal ${req.params.id}`})
-}
+})
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 // DESCRIPTION - Delete goal
 // ROUTE - DELETE /api/goals/:id
 // ACCESS - Private
-const deleteGoal = (req, res) => {
+const deleteGoal = asyncHandler( async (req, res) => {
   res.status(200).json({message: `Delete Goal ${req.params.id}`})
-}
+})
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 module.exports = {
   getGoals,
