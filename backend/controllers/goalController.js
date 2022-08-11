@@ -10,6 +10,20 @@ const getGoals = (req, res) => {
 // ROUTE - POST /api/goals
 // ACCESS - Private
 const setGoal = (req, res) => {
+
+  //read body data
+  console.log(req.body)
+
+  // check for body data first
+  if(!req.body.text) {
+    // If there is no body text, set response status to 400 which is error and as an extra add a json message.
+    // res.status(400).json({message: "please add a text field"})
+    
+    // Option 2 - If there is no body text, set response status to 400 which is error but use express error handler
+    res.status(400)
+    throw new Error('Please add a text field')
+  }
+
   res.status(200).json({message: 'Set Goal'})
 }
 
