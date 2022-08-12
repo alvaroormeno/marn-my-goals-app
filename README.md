@@ -42,7 +42,7 @@ A clone of Spacex.com
 - [Mongoose](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Colors](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-- [MondgoDB](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [JWT](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [MondgoDB](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ## Screenshots
