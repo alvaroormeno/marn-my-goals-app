@@ -6,6 +6,9 @@ const asynchHandler = require('express-async-handler')
 const User = require('../models/userModel.js')
 
 
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
 // DESCRIPTION - Register a user
 // ROUTE - POST /api/users
 // ACCESS - Public
@@ -53,12 +56,38 @@ const registerUser = asynchHandler( async (req, res) => {
   res.json({message: 'Register User' })
 })
 
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
 // DESCRIPTION - Authenticate a user
 // ROUTE - POST /api/users/login
 // ACCESS - Public
 const loginUser = asynchHandler( async (req, res) => {
+
+  // Deconstrust req.body to grab email and password
+  const { email, password } = req.body
+
+  // Check for user by email
+  const user = await User.findOne({email})
+
+  // If user is true and comparing the req.body password with the hashed password from db is true too, then...
+  if(user && (await bcrypt.compare(password, user.password))) {
+    res.json({
+      _id: user.id,
+      name: user.name,
+      email: user.email
+    })
+  } else {
+    res.status(400)
+    throw new Error('Invalid credentials')
+  }
+
+
   res.json({message: 'Login User' })
 })
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 // DESCRIPTION - Get user data
 // ROUTE - GET /api/users/me
@@ -66,6 +95,10 @@ const loginUser = asynchHandler( async (req, res) => {
 const getMe = asynchHandler( async (req, res) => {
   res.json({message: 'User data display' })
 })
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
 
 
 
