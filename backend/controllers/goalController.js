@@ -39,7 +39,12 @@ const setGoal = asyncHandler( async (req, res) => {
     throw new Error('Please add a text field')
   }
 
-  res.status(200).json({message: 'Set Goal'})
+  // If no error then create a goal with create() method. Inside create we pass a text value which reads the req body text. 
+  const goal = await Goal.create({
+    text: req.body.text
+  })
+  // Set call response status to "ok 200" and include the goal we just created in db which is saved in the const goal variable
+  res.status(200).json(goal)
 })
 
 /////////////////////////////////////////////////////////////////
