@@ -1,3 +1,10 @@
+// Import jwt for webtokens
+const jwt = require('jsonwebtoken')
+// Import bcrypt to hash passwords
+const bcrypt = require('bcryptjs')
+const asynchHandler = require('express-async-handler')
+const User = require('../models/userModel.js')
+
 
 // DESCRIPTION - Register a user
 // ROUTE - POST /api/users
