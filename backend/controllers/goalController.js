@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
-
+// Import Goal Model
+const Goal = require('../models/goalModel.js')
 
 
 // IMPORTANT NOTE -> When we use mongoose inside of these controller functions to interact with database, we get back a promise. Therefore we use async/await... we added async before (req, res). If we use async/await we need to use try/catch syntax. But if dont want to use try/cath and just use error handler we need to use express-async-handler package. We install it and import it to the top of this file and wrap the function with it.
@@ -12,7 +13,11 @@ const asyncHandler = require('express-async-handler')
 // ROUTE - GET /api/goals
 // ACCESS - Private
 const getGoals = asyncHandler( async (req, res) => {
-  res.status(200).json({message: 'Get Goals'})
+  // Create variable goals to store goals from mongoDB. We use the mongoose model we imported Goal and use the model method find() to retrieve/find them. Also, we use await since its asynchronous.
+  const goals = await Goal.find()
+
+  // Set the response status to "success 200" and to include the retrieved goals saved in const goals
+  res.status(200).json(goals)
 })
 
 /////////////////////////////////////////////////////////////////
