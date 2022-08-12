@@ -99,7 +99,13 @@ const getMe = asynchHandler( async (req, res) => {
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
-
+// Generate JWT Token function wich takes in the user id which we want as the payload
+const generateToken = (id) => {
+  // return to function jwt and its method sign which takes 3 parameters first, the payload/data we want to put there, second, the secret on env file and third which is an option that tells it expired in 30 days.
+  return jwt.sign({id}, process.env.JWT_SECRET, {
+    expiresIn: '30d'
+  })
+}
 
 
 
