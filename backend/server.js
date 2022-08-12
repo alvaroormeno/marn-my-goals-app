@@ -15,8 +15,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-// API main endpoint which uses different routes and each route its respective controller.
+// API main endpoint/routes which uses different routes and each route its respective controller.
 app.use('/api/goals', require('./routes/goalRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
 
 // Middlewear to overwrite default express error handler
 app.use(errorHandler)
