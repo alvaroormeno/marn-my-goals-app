@@ -61,7 +61,7 @@ const registerUser = asynchHandler( async (req, res) => {
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
-// DESCRIPTION - Authenticate a user
+// DESCRIPTION - Authenticate/Login a user
 // ROUTE - POST /api/users/login
 // ACCESS - Public
 const loginUser = asynchHandler( async (req, res) => {
@@ -95,7 +95,7 @@ const loginUser = asynchHandler( async (req, res) => {
 
 // DESCRIPTION - Get user data
 // ROUTE - GET /api/users/me
-// ACCESS - Public
+// ACCESS - Private
 const getMe = asynchHandler( async (req, res) => {
   res.json({message: 'User data display' })
 })
