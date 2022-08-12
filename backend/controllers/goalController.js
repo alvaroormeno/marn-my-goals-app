@@ -23,7 +23,7 @@ const getGoals = asyncHandler( async (req, res) => {
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
-// DESCRIPTION - Set a goal
+// DESCRIPTION - Create a goal
 // ROUTE - POST /api/goals
 // ACCESS - Private
 const setGoal = asyncHandler( async (req, res) => {
@@ -81,7 +81,17 @@ const updateGoal = asyncHandler( async (req, res) => {
 // ROUTE - DELETE /api/goals/:id
 // ACCESS - Private
 const deleteGoal = asyncHandler( async (req, res) => {
-  res.status(200).json({message: `Delete Goal ${req.params.id}`})
+  // STEP 1-> Find goal we want to delete by id and save it in the const variable goal.
+  const goal = await Goal.findById(req.params.id)
+  // If there is no goal set response status to error code 400 and throw error message.
+  if(!goal) {
+    res.status(400)
+    throw new Error('Goal not found')
+  } 
+  // STEP 2-> Easily delete goal by grabbing the saved goal in const goal and using remove method().
+  await goal.remove()
+  // STEP 3-> Set response status to "ok 200" and add the deleted goal id to the response.
+  res.status(200).json({id: req.params.id})
 })
 
 /////////////////////////////////////////////////////////////////
