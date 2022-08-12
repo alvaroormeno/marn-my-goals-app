@@ -54,7 +54,24 @@ const setGoal = asyncHandler( async (req, res) => {
 // ROUTE - PUT /api/goals/:id
 // ACCESS - Private
 const updateGoal = asyncHandler( async (req, res) => {
-  res.status(200).json({message: `Update Goal ${req.params.id}`})
+  // STEP 1-> Find the goal we want to update to check if it exists or not and save it in goal const. We find it by using findById() method which we pass the id of the goal we want to update. This id comes from the url id params.
+  const goal = await Goal.findById(req.params.id)
+  // If there is no goal set response status to error code 400 and throw error message.
+  if(!goal) {
+    res.status(400)
+    throw new Error('Goal not found')
+  } 
+  // STEP 2-> Find goal to update based on id and update it using findByIdAndUpdate() which uses 3 arguments.
+  const updatedGoal = await Goal.findByIdAndUpdate(
+    // Id of goal we want to update
+    req.params.id,
+    // The new data we want to update
+    req.body,
+    // Just in case option to create it if it doesnt exist.
+    {new: true}
+  )
+  // STEP 3-> Set response status to "ok 200" and add the updatedgoal in the response.
+  res.status(200).json(updatedGoal)
 })
 
 /////////////////////////////////////////////////////////////////
