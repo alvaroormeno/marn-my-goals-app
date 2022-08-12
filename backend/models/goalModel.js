@@ -7,6 +7,14 @@ const mongoose = require('mongoose')
 const goalSchema = mongoose.Schema(
   // Object with schema fields
   {
+    user: {
+      // instead of string, we want it to be the object id which is the id mongoose gives when creating a new resource.
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      // Reference because we need to let mongoose know which model this objectId id coming from. We want it to come from the User model.
+      ref: 'User'
+
+    },
     text: {
       // declare type of field
       type: String,
