@@ -1,6 +1,7 @@
 {
   "name": "mern-my-goals-app",
   "version": "1.0.0",
+  "proxy": "http://localhost:500",
   "description": "Personal Goalsetter App",
   "main": "server.js",
   "scripts": {
