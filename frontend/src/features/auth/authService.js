@@ -1,6 +1,7 @@
 // authservices is only for making http request, sending data back, setting data in local storage
 import axios from 'axios'
 
+// to complete url here with http local host 5001 we added proxy
 const API_URL = '/api/users/'
 
 // Register user
