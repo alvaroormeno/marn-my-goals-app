@@ -14,7 +14,17 @@ const initialState = {
   message: ''
 }
 
-// Register user
+// Register user - this is an asycn thunk function
+// creatAsyncThunk takes 3, a string wtih the action, an async function with two params: user which comes from the register component and second argument thunkAPI
+export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
+  try {
+    // makre request
+    return await authService.register(user)
+
+  } catch (error) {
+
+  }
+})
 
 
 
