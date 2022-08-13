@@ -1,9 +1,78 @@
 import React from 'react'
+import {useState, useEffect} from 'react'
+import {FaSignInAlt} from "react-icons/fa"
 
 function Login() {
+
+  // Instead of having a different state for each input field, we only have one state for the whole form. This initial state will carry an object with a property and iniitial value of empty for each field.
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
+  // To retrieve the property values of formData state we destructure it.
+  const {email, password} = formData
+  // console.log(setFormData(prevState))
+
+  const onChange = (e) => {  
+    // Usually we call setName, setEmail etc for each input. Since we only hace on formData state, we cann pass a function inside setFormData and that function carries prevState as a paramater which is just a name for a paramater that once passed inside any setState contains the previous state. We need the previous state because the onChange is fired first once we type inside the name input. Then its fired again when we finish typing the email input and so on. So we need to carry the previous state so the second, third and fourth time onChage is called we still carry the previous input data/values.
+    setFormData((prevState) => ({
+      // We spread prevState to get the previous state of the 4 properties (key: value) for each input and then set each property to include the new value of each input. 
+      ...prevState,
+      // Since each input name property has a value that is the same to the setFormData properties we set that as the key with [e.target.name] and then the value to the new input value with [e.target.value].
+      [e.target.name]: [e.target.value]
+    }))
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+  }
+
   return (
-    <div>Login</div>
-  )
+		<>
+			<section className="heading">
+				<h1>
+					<FaSignInAlt /> Login
+				</h1>
+				<p>Login to set your own Goals!</p>
+			</section>
+
+			<section className="form">
+				<form onSubmit={onSubmit}>
+          {/* Email Input */}
+					<div className="form-group">
+						<input
+							type="text"
+							className="form-control"
+							id="email"
+							name="email"
+							value={email}
+							placeholder="Enter your email"
+							onChange={onChange}
+						/>
+					</div>
+          {/* Password Input */}
+					<div className="form-group">
+						<input
+							type="password"
+							className="form-control"
+							id="password"
+							name="password"
+							value={password}
+							placeholder="Enter your password"
+							onChange={onChange}
+						/>
+					</div>
+          {/* Submit Button */}
+          <div className='form-group'>
+            <button type='submit' className='btn btn-block'>
+              Submit
+            </button>
+          </div>
+				</form>
+			</section>
+		</>
+	);
 }
 
 export default Login
