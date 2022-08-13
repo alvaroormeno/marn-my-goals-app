@@ -14,7 +14,7 @@ const Goal = require('../models/goalModel.js')
 // ACCESS - Private
 const getGoals = asyncHandler( async (req, res) => {
   // Create variable goals to store goals from mongoDB. We use the mongoose model we imported Goal and use the model method find() to retrieve/find them. Also, we use await since its asynchronous.
-  const goals = await Goal.find()
+  const goals = await Goal.find({user: req.user.id})
 
   // Set the response status to "success 200" and to include the retrieved goals saved in const goals
   res.status(200).json(goals)
@@ -41,7 +41,8 @@ const setGoal = asyncHandler( async (req, res) => {
 
   // If no error then create a goal with create() method. Inside create we pass a text value which reads the req body text. 
   const goal = await Goal.create({
-    text: req.body.text
+    text: req.body.text,
+    user: req.user.id
   })
   // Set call response status to "ok 200" and include the goal we just created in db which is saved in the const goal variable
   res.status(200).json(goal)
