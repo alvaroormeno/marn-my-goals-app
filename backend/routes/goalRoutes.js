@@ -5,19 +5,22 @@ const router = express.Router()
 
 const { getGoals, setGoal, updateGoal, deleteGoal } = require('../controllers/goalController.js')
 
+//Bring protect middleware
+const {protect} = require('../middleware/authMiddleware.js')
+
 // NOTE: 
 // Since both of these routes use the same route of '/' we can merge them into one route.
 // EXAMPLE:
 // router.route('/').get(getGoals).post(setGoal)
-router.get('/', getGoals)
-router.post('/', setGoal)
+router.get('/', protect, getGoals)
+router.post('/', protect, setGoal)
 
 // NOTE: 
 // Since both of these routes use the same route of '/:id' we can merge them into one route.
 // EXAMPLE:
 // router.route('/:id').delete(deleteGoal).put(updateGoal)
-router.put('/:id', updateGoal)
-router.delete('/:id', deleteGoal)
+router.put('/:id', protect, updateGoal)
+router.delete('/:id', protect, deleteGoal)
 
 module.exports = router
 
