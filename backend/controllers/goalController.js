@@ -1,7 +1,8 @@
 const asyncHandler = require('express-async-handler')
 
-// Import Goal Model
-const Goal = require('../models/goalModel.js')
+// Import Goal and User Model
+const Goal = require('../models/goalModel.js');
+const User = require('../models/userModel.js');
 
 
 // IMPORTANT NOTE -> When we use mongoose inside of these controller functions to interact with database, we get back a promise. Therefore we use async/await... we added async before (req, res). If we use async/await we need to use try/catch syntax. But if dont want to use try/cath and just use error handler we need to use express-async-handler package. We install it and import it to the top of this file and wrap the function with it.
@@ -9,7 +10,7 @@ const Goal = require('../models/goalModel.js')
 /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
-// DESCRIPTION - Get all goals
+// DESCRIPTION - Get user goals
 // ROUTE - GET /api/goals
 // ACCESS - Private
 const getGoals = asyncHandler( async (req, res) => {
@@ -62,6 +63,21 @@ const updateGoal = asyncHandler( async (req, res) => {
     res.status(400)
     throw new Error('Goal not found')
   } 
+
+  //Get user by id. The id we pass comnes from the protection middleware that grabs it from the authorization http header
+  const user = await User.findById(req.user.id)
+  //Check for user
+  if(!user){
+    res.status(401)
+    throw new Error('User not found')
+  }
+
+  //Make sure the logged in user matches the goal user
+  if(goal.user.toString() !== user.id) {
+    res.status(401)
+    throw new Error('User not authorized')
+  }
+
   // STEP 2-> Find goal to update based on id and update it using findByIdAndUpdate() which uses 3 arguments.
   const updatedGoal = await Goal.findByIdAndUpdate(
     // Id of goal we want to update
@@ -89,6 +105,22 @@ const deleteGoal = asyncHandler( async (req, res) => {
     res.status(400)
     throw new Error('Goal not found')
   } 
+
+    //Get user by id. The id we pass comnes from the protection middleware that grabs it from the authorization http header
+    const user = await User.findById(req.user.id)
+    //Check for user
+    if(!user){
+      res.status(401)
+      throw new Error('User not found')
+    }
+  
+    //Make sure the logged in user matches the goal user
+    if(goal.user.toString() !== user.id) {
+      res.status(401)
+      throw new Error('User not authorized')
+    }
+
+
   // STEP 2-> Easily delete goal by grabbing the saved goal in const goal and using remove method().
   await goal.remove()
   // STEP 3-> Set response status to "ok 200" and add the deleted goal id to the response.
