@@ -1,5 +1,6 @@
 // Here our reducers and initial state will be
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
+import authService from './authService'
 
 // Get user from local storage
 const user = JSON.parse(localStorage.getItem('user'))
@@ -22,7 +23,10 @@ export const register = createAsyncThunk('auth/register', async (user, thunkAPI)
     return await authService.register(user)
 
   } catch (error) {
-
+    // save erros to message variable... if any of the following exist then save to const message
+    const message = (error.response && error.response.data & error.response.data.message) || error.message || error.toString()
+    // use thunkapi method rejectWithValue and pass in the message to send the message as payload
+    return thunkAPI.rejectWithValue(message)
   }
 })
 
