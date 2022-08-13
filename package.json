@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/alvaroormeno/mern-my-goals-app#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^16.0.1",
@@ -27,7 +28,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-toastify": "^9.0.8"
   },
   "devDependencies": {
     "concurrently": "^7.3.0",
@@ -37,5 +39,4 @@
     "scripts": "To run the backend (server) we use npm run server, to run the front end (client) we use npm un client",
     "scripts2": "If we want to run both at same time with only one command, we use concurrently package and use npm run dev"
   }
-  
 }

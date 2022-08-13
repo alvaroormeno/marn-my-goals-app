@@ -14,6 +14,10 @@ const initialState = {
   message: ''
 }
 
+// Register user
+
+
+
 // slice
 export const authSlice = createSlice({
   // name of slice
