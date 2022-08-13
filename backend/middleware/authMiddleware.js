@@ -1,19 +1,19 @@
-const jwt = require('jsonwebtoken');
-const asynchHandler = require('express-async-handler')
+const jwt = require('jsonwebtoken')
+const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 
 // Function protect to
-const protect = asynchHandler(async (req, res, next) => {
+const protect = asyncHandler(async (req, res, next) => {
   // Initialize a varibale token
   let token
 
   // NOTE: The way this is sent is in the http headers, inside the headers there is an authorization object.
   // Check if there is a authorization header and if the header starts with bearer wich it always does
-  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer') )
-    try{
+  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer') ) {
+    try {
       // Get token from header using split. 
       // - Since the authorization header is (Bearer token) we use split which will split the header based on spaces ' ' and put all words into an array. Since this array will only have 2 items/words we want the second one which is the token, hence we add [1] 
-      token = req.header.authorization.split(' ')[1]
+      token = req.headers.authorization.split(' ')[1]
 
       // Verify the token
       // Set a variable to jwt and use verify methos that takes in the token itself and the secret on our env file.
@@ -34,6 +34,8 @@ const protect = asynchHandler(async (req, res, next) => {
       throw new Error('Not authorized')
 
     }
+  }
+    
 
     // If there is no token
     if(!token) {
