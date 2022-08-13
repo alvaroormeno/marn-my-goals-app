@@ -45,6 +45,13 @@ A clone of Spacex.com
 - [JWT](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
+- [Redux](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Redux Toolkit](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [React Router Dom](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 ## Screenshots
 
 ![Screenshot 1](img/screenshot1.png)
