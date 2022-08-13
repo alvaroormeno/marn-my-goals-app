@@ -49,7 +49,7 @@ A Fullstack Mern App that lets costumers create a user and set their own persona
 - [Redux Toolkit](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React Router Dom](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React Icons](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Concurrently](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ## Screenshots

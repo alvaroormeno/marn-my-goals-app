@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,12 @@
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
+    "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
+  },
+  "COMMENTS!": {
+    "scripts": "To run the backend (server) we use npm run server, to run the front end (client) we use npm un client",
+    "scripts2": "If we want to run both at same time with only one command, we use concurrently package and use npm run dev"
   }
+  
 }
