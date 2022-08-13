@@ -13,7 +13,7 @@
 
 ## About The Project
 
-A clone of Spacex.com
+A Fullstack Mern App that lets costumers create a user and set their own personal goals for them to track.
 
 ## Features
 
@@ -24,8 +24,8 @@ A clone of Spacex.com
 
 ## Demo
 
-- Live Page: https://alvaroormeno.github.io/space-x-website-clone/dragon.html
-- Github Repo: https://github.com/alvaroormeno/space-x-website-clone
+- Live Page:
+- Github Repo: https://github.com/alvaroormeno/mern-my-goals-app
 
 ## Built With
 
@@ -48,7 +48,7 @@ A clone of Spacex.com
 - [Redux](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Redux Toolkit](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React Router Dom](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [React Icons](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [bycryptjs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
