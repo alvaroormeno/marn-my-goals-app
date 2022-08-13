@@ -6,16 +6,23 @@ function Register() {
 
   // Instead of having a different state for each input field, we only have one state for the whole form. This initial state will carry an object with a property and iniitial value of empty for each field.
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    password2: '',
+    name: '123',
+    email: '1',
+    password: '1',
+    password2: '123',
   })
   // To retrieve the property values of formData state we destructure it.
   const {name, email, password, password2} = formData
+  // console.log(setFormData(prevState))
 
-  const onChange = () => {
-
+  const onChange = (e) => {
+    // Usually we call setName, setEmail etc for each input. Since we only hace on formData state, we cann pass a function inside setFormData and that function carries prevState as a paramater which is just a name for a paramater that once passed inside any setState contains the previous state. 
+    setFormData((prevState) => ({
+      // We spread prevState to get the previous state of the 4 properties (key: value) for each input and then set each property to include the new value of each input. 
+      ...prevState,
+      // Since each input name property has a value that is the same to the setFormData properties we set that as the key with [e.target.name] and then the value to the new input value with [e.target.value].
+      [e.target.name]: [e.target.value]
+    }))
   }
 
   const onSubmit = (e) => {
