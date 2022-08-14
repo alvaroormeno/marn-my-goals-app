@@ -48,7 +48,7 @@ function Register() {
       // We spread prevState to get the previous state of the 4 properties (key: value) for each input and then set each property to include the new value of each input. 
       ...prevState,
       // Since each input name property has a value that is the same to the setFormData properties we set that as the key with [e.target.name] and then the value to the new input value with [e.target.value].
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value 
     }))
   }
 

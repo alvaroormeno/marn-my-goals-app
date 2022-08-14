@@ -1,6 +1,11 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import {FaSignInAlt} from "react-icons/fa"
+import {useSelector, useDispatch} from 'react-redux'
+import {useNavigate, useSearchParams} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {login, reset} from '../features/auth/authSlice.js'
+import Spinner from '../components/Spinner.jsx'
 
 function Login() {
 
@@ -11,7 +16,28 @@ function Login() {
   })
   // To retrieve the property values of formData state we destructure it.
   const {email, password} = formData
-  // console.log(setFormData(prevState))
+
+	//initialize navigate and dispatch
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+
+	// select what we want from our state using useSelector and specify what part of the state we want it from
+	const {user, isLoading, isError, isSuccess, message} = useSelector(
+		(state) => state.auth
+	)
+
+	useEffect(() => {
+		if(isError) {
+			toast.error(message)
+		}
+
+		if(isSuccess || user) {
+			navigate('/')
+		}
+
+		dispatch(reset())
+
+	}, [user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {  
     // Usually we call setName, setEmail etc for each input. Since we only hace on formData state, we cann pass a function inside setFormData and that function carries prevState as a paramater which is just a name for a paramater that once passed inside any setState contains the previous state. We need the previous state because the onChange is fired first once we type inside the name input. Then its fired again when we finish typing the email input and so on. So we need to carry the previous state so the second, third and fourth time onChage is called we still carry the previous input data/values.
@@ -26,7 +52,18 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault()
 
+		const userData = {
+			email: email,
+			password: password
+		}
+
+		dispatch(login(userData))
+
   }
+
+	if(isLoading) {
+		return <Spinner/>
+	}
 
   return (
 		<>
