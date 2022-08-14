@@ -3,9 +3,8 @@ import {useNavigate} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import GoalForm from '../components/GoalForm'
 import Spinner from '../components/Spinner'
-import {getGoals} from '../features/goals/goalSlice.js'
+import {getGoals, reset} from '../features/goals/goalSlice.js'
 import GoalItem from '../components/GoalItem'
-import {reset} from '../features/auth/authSlice'
 
 function Dashboard() {
 
@@ -24,11 +23,11 @@ function Dashboard() {
       console.log(message)
     }
 
-    if(!user) {
-      navigate('/login')
+    if (!user) {
+      navigate("/login");
+    } else {
+      dispatch(getGoals());
     }
-
-    dispatch(getGoals())
 
     return () => {
       dispatch(reset())
