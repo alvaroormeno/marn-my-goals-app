@@ -40,6 +40,24 @@ function Register() {
   const onSubmit = (e) => {
     e.preventDefault()
 
+		// When we submit we want to dispatch our register
+
+		// first check for password match
+		if(password !== password2) {
+			// if they dont match send toast message
+			toast.error('Passwords do not match')
+		} else {
+			// try to register user, register function takes userDate so we create object userData
+			const userData = {
+				name: name,
+				email: email,
+				password: password
+			}
+			
+			// dispatch the register function from authslice and pass userData
+			dispatch(register(userData))
+		}
+
   }
 
   return (
