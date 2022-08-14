@@ -36,6 +36,20 @@ export const logout = createAsyncThunk('auth/logout',
     await authService.logout()
 })
 
+// Login User
+export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
+  try {
+    // makre request
+    return await authService.login(user)
+
+  } catch (error) {
+    // save erros to message variable... if any of the following exist then save to const message
+    const message = (error.response && error.response.data & error.response.data.message) || error.message || error.toString()
+    // use thunkapi method rejectWithValue and pass in the message to send the message as payload
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
 
 
 // slice
