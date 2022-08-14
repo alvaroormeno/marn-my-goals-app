@@ -10,7 +10,7 @@ const port = process.env.PORT || 5001
 connectDB()
 
 // Initialize express
-const app = express()
+const app = express() 
 
 // Middlewear to be able to use body data
 app.use(express.json())
