@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate, useSearchParams} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {register, reset} from '../features/auth/authSlice.js'
+import Spinner from '../components/Spinner.jsx'
 
 function Register() {
 
@@ -23,7 +24,7 @@ function Register() {
 	const dispatch = useDispatch()
 
 	// select what we want from our state using useSelector and specify what part of the state we want it from
-	const {user, loading, isError, isSuccess, message} = useSelector(
+	const {user, isLoading, isError, isSuccess, message} = useSelector(
 		(state) => state.auth
 	)
 
@@ -36,7 +37,7 @@ function Register() {
 			navigate('/')
 		}
 
-		dispatch(reset)
+		dispatch(reset())
 
 	}, [user, isError, isSuccess, message, navigate, dispatch])
 
@@ -47,7 +48,7 @@ function Register() {
       // We spread prevState to get the previous state of the 4 properties (key: value) for each input and then set each property to include the new value of each input. 
       ...prevState,
       // Since each input name property has a value that is the same to the setFormData properties we set that as the key with [e.target.name] and then the value to the new input value with [e.target.value].
-      [e.target.name]: [e.target.value]
+      [e.target.name]: e.target.value
     }))
   }
 
@@ -73,6 +74,11 @@ function Register() {
 		}
 
   }
+
+	// check for is loading to use spinner
+	if(isLoading) {
+		return <Spinner/>
+	}
 
   return (
 		<>
@@ -100,7 +106,7 @@ function Register() {
           {/* Email Input */}
 					<div className="form-group">
 						<input
-							type="text"
+							type="email"
 							className="form-control"
 							id="email"
 							name="email"
